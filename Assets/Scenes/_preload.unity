@@ -159,53 +159,63 @@ MonoBehaviour:
   - name: Lift
     category: 0
     levels: 10
-    currentLevel: 0
+    currentLevel: 9
     costPerLevel: 10
+    skillIncreasePerLevel: 0.1
   - name: Reponsivness
     category: 0
     levels: 10
     currentLevel: 0
     costPerLevel: 10
+    skillIncreasePerLevel: 0.1
   - name: Aerodynamics
     category: 0
     levels: 10
     currentLevel: 0
     costPerLevel: 10
+    skillIncreasePerLevel: 0.1
   - name: Radar
     category: 1
     levels: 3
     currentLevel: 0
     costPerLevel: 100
+    skillIncreasePerLevel: 0
   - name: Magnet
     category: 1
     levels: 3
     currentLevel: 0
     costPerLevel: 250
+    skillIncreasePerLevel: 0
   - name: Luck
     category: 2
     levels: 3
     currentLevel: 0
     costPerLevel: 50
+    skillIncreasePerLevel: 0.1
   - name: Parachute
     category: 2
     levels: 5
     currentLevel: 0
     costPerLevel: 50
+    skillIncreasePerLevel: 0.1
   - name: Jetpack
     category: 1
     levels: 3
     currentLevel: 0
     costPerLevel: 500
+    skillIncreasePerLevel: 0
   - name: Gravity Disintegrator
     category: 1
     levels: 1
     currentLevel: 0
     costPerLevel: 5000
+    skillIncreasePerLevel: 0
   - name: Bird Shield
     category: 1
     levels: 3
     currentLevel: 0
     costPerLevel: 100
+    skillIncreasePerLevel: 0.1
 --- !u!114 &929193305
 MonoBehaviour:
   m_ObjectHideFlags: 0

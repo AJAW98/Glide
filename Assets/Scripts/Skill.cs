@@ -15,6 +15,6 @@ public class Skill
     public int levels;
     public int currentLevel;
     public float costPerLevel;  
-
+    public float skillIncreasePerLevel;
 
 }

@@ -388,11 +388,7 @@ MonoBehaviour:
   skillContainer: {fileID: 1226185396}
   skillPrefab: {fileID: 2386538310405165134, guid: c25d24185527499468f762531892bcb0,
     type: 3}
-  purchasedButton: {fileID: 3773311276889440105, guid: 42fbdbd85eaa03d4fa5bc01d2d51003d,
-    type: 3}
-  buyButton: {fileID: 3356820585107361041, guid: 3f5500376ae424442b7273bbfddb7822,
-    type: 3}
-  lockedButton: {fileID: 2988394378074894268, guid: 8cec10853246fe348bb21f8680e5baf9,
+  buttonPrefab: {fileID: 3356820585107361041, guid: 3f5500376ae424442b7273bbfddb7822,
     type: 3}
   animDelay: 0.3
 --- !u!1 &392968443
@@ -708,7 +704,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 77153941}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.30180913
+  m_Size: 0.3004187
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

@@ -12,14 +12,14 @@ public class Shop : MonoBehaviour
 
     [SerializeField] Transform skillContainer;
     [SerializeField] GameObject skillPrefab; 
-    [SerializeField] GameObject purchasedButton;
-    [SerializeField] GameObject buyButton;
-    [SerializeField] GameObject lockedButton;
+    [SerializeField] GameObject buttonPrefab; 
+    
     [SerializeField] float animDelay = 0.3f;
 
     App app;
 
     Skill[] skills;
+    List<GameObject> buttons = new List<GameObject>();
 
     public void OnPlayClicked() {
         LevelLoader.instance.LoadScene(3);
@@ -32,9 +32,11 @@ public class Shop : MonoBehaviour
         app = App.instance;
 
         dayText.text = "Day " + app.GetCurrentDay();
-        cashText.text = "$" + app.GetCash();
+        UpdateCash();
 
         skills = app.GetSkills();
+
+
         foreach(Skill skill in skills) {
             Transform spawnedSkill = Instantiate(skillPrefab, Vector3.zero, Quaternion.identity).transform;
             spawnedSkill.SetParent(skillContainer, false);
@@ -43,37 +45,41 @@ public class Shop : MonoBehaviour
             itemTitle.text = skill.name;
 
             Transform buttonContainer = spawnedSkill.GetChild(0).GetChild(0);
-            Debug.Log(buttonContainer.name);
 
             int levels = skill.levels;
             int currentLevel = skill.currentLevel;
 
             for (int i = 0; i < levels; i++) {
+
+
+                UpgradeButton buttonScript = CreateButton(skill);
+
                 if (i < currentLevel) {
-                    Transform button = Instantiate(purchasedButton).transform;
-                    button.SetParent(buttonContainer, false);
+                    buttonScript.UpdateButton(ButtonStatus.Paid, skill.costPerLevel, buttonContainer);
                 }
-                if (i == currentLevel && app.GetCash() >= skill.costPerLevel) {
-                    Transform button = Instantiate(buyButton).transform;
-                    button.SetParent(buttonContainer, false);
-                    button.onClick.AddListener(() => {LogName(myButtonGameObject); });
+
+                if (i == currentLevel) {
+                    buttonScript.UpdateButton(ButtonStatus.Unpaid, skill.costPerLevel, buttonContainer);
                 }
-                if (i > currentLevel || (i == currentLevel && app.GetCash() < skill.costPerLevel)) {
-                    Transform button = Instantiate(lockedButton).transform;
-                    button.SetParent(buttonContainer, false);
-                }
+
+                //if (i > currentLevel) {
+                  //  buttonScript.UpdateButton(ButtonStatus.Locked, skill.costPerLevel, buttonContainer);
+                //}
                 
             }
         }
     }
-    
 
-    public void BuySkill() {
 
+    public UpgradeButton CreateButton(Skill skill) {
+        GameObject buttonObj = Instantiate(buttonPrefab);
+        UpgradeButton buttonScript = buttonObj.GetComponent<UpgradeButton>();
+        buttonScript.SetSkill(skill);
+        return buttonScript;
     }
 
-    public void LogName(GameObject buttonGameObject = null){
-        Debug.Log(myButtonGameObject);
+    public void UpdateCash() {
+        cashText.text = "$" + app.GetCash();
     }
 
     IEnumerator AnimateSkill() {

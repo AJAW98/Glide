@@ -37,6 +37,10 @@ public class App : MonoBehaviour
         return cash;
     }
 
+    void RemoveCash(float quantity) {
+        cash -= quantity;
+    }
+
     public void NextDay() {
         currentDay++;
     }
@@ -47,5 +51,24 @@ public class App : MonoBehaviour
 
     public Skill[] GetSkills() {
         return skills;
+    }
+
+    public void AddSkill(Skill _skill, int quantity = 1) {
+        foreach (Skill skill in skills) {
+            if (skill == _skill) {
+                skill.currentLevel += quantity;
+                RemoveCash(skill.costPerLevel);
+                Debug.Log("Upgraded skill " + skill.name + " = " + skill.currentLevel + ", cost: " + skill.costPerLevel);
+            }
+        }
+    }
+
+    public Skill FindSkillByName(string name) {
+        foreach (Skill skill in skills) {
+            if (skill.name == name)
+                return skill;
+        }
+
+        return null;
     }
 }

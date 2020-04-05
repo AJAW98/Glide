@@ -16,17 +16,25 @@ public class PlayerPhysics : MonoBehaviour
     InfiniteScroll[] backgrounds;
     RotateSprite rotator;
     Parachute parachute;
+    App app;
 
     [Space]
     [Header("Physics Settings")]
     [SerializeField] float diveTime = 2f;
     float currentLerpTimeDive;
 
-    [SerializeField] float slowTime = 1f;
     [SerializeField] float liftTime = 1f;
     float currentLerpTimeLift;
+
+    //Bird slow effect
+    [SerializeField] float slowTime = 1f;
     float slowDisableTime;
     float slowPower;
+
+    //Skill multipliers
+    float liftMultiplier;
+    float responsiveMultiplier;
+    float aerodynamicsMultipliers;
 
     bool slowed;
 
@@ -59,6 +67,9 @@ public class PlayerPhysics : MonoBehaviour
         parachute = GetComponent<Parachute>();
         rb.velocity = new Vector2(glideSpeed, diveSpeed);
         mapBounds = GameObject.FindGameObjectWithTag("MapBounds").transform;
+        app = App.instance;
+
+        GetSkillMultipliers();
     }
 
     void FixedUpdate() {
@@ -80,6 +91,8 @@ public class PlayerPhysics : MonoBehaviour
         if (parachute.IsOpen())
             return;
 
+        
+
         if (dive)
         {
             dirVector = Vector2.SmoothDamp(dirVector, diveAngle, ref velRef, diveTime);
@@ -90,6 +103,12 @@ public class PlayerPhysics : MonoBehaviour
         }
 
         rb.velocity = (dirVector * velocity) * slowVector;
+
+        //Apply lift multiplier
+        
+
+        Debug.Log("Prev velo: " + (dirVector * velocity) * slowVector);
+        Debug.Log("Vel: " + (dirVector * velocity) * slowVector * (1 + liftMultiplier));
 
         if (slowDisableTime < Time.time) {
             slowVector = Vector2.one;
@@ -103,7 +122,7 @@ public class PlayerPhysics : MonoBehaviour
         //Debug texts
         speedText.text = "Player Speed: " + rb.velocity.magnitude;
         vertSpeedText.text = "Vertical Speed: " + rb.velocity.y;
-        vertSpeedText.text = "Horizontal Speed: " + rb.velocity.x;
+        horSpeedText.text = "Horizontal Speed: " + rb.velocity.x;
         flyAngleText.text = "Fly Angle: " + Vector2.Angle(Vector2.right, dirVector);
         
     }
@@ -127,6 +146,12 @@ public class PlayerPhysics : MonoBehaviour
         slowVector = new Vector2(1 - slowPower, 1f);
     }
 
+    void GetSkillMultipliers() {
+        liftMultiplier = app.FindSkillByName("Lift").currentLevel * app.FindSkillByName("Lift").skillIncreasePerLevel;
+        responsiveMultiplier = app.FindSkillByName("Reponsivness").currentLevel;
+        aerodynamicsMultipliers = app.FindSkillByName("Aerodynamics").currentLevel;
+        Debug.Log(liftMultiplier + " | " + responsiveMultiplier + " | " + aerodynamicsMultipliers);
+    }
 
 
 }
