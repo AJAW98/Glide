@@ -36,7 +36,7 @@ public class UpgradeButton : MonoBehaviour {
             image.sprite = lockedButton;
             button.interactable = false;
         }*/
-        
+
         if (_status == ButtonStatus.Unpaid) {
             status = ButtonStatus.Unpaid;
             button.interactable = true;
@@ -68,7 +68,7 @@ public class UpgradeButton : MonoBehaviour {
         App.instance.AddSkill(skill);
         UpdateButton(ButtonStatus.Paid);
         shop.UpdateCash();
-        if (costPerLevel <= App.instance.GetCash()) {
+        if (costPerLevel <= App.instance.GetCash() && skill.currentLevel < skill.levels) {
             UpgradeButton createdButton = shop.CreateButton(skill);
             createdButton.UpdateButton(ButtonStatus.Unpaid, costPerLevel, transform.parent);
             

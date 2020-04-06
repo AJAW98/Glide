@@ -159,21 +159,21 @@ MonoBehaviour:
   - name: Lift
     category: 0
     levels: 10
-    currentLevel: 9
+    currentLevel: 8
     costPerLevel: 10
-    skillIncreasePerLevel: 0.1
+    skillIncreasePerLevel: 0.05
   - name: Reponsivness
     category: 0
     levels: 10
     currentLevel: 0
     costPerLevel: 10
-    skillIncreasePerLevel: 0.1
+    skillIncreasePerLevel: 0.05
   - name: Aerodynamics
     category: 0
     levels: 10
     currentLevel: 0
     costPerLevel: 10
-    skillIncreasePerLevel: 0.1
+    skillIncreasePerLevel: 0.15
   - name: Radar
     category: 1
     levels: 3
@@ -197,7 +197,7 @@ MonoBehaviour:
     levels: 5
     currentLevel: 0
     costPerLevel: 50
-    skillIncreasePerLevel: 0.1
+    skillIncreasePerLevel: 0.2
   - name: Jetpack
     category: 1
     levels: 3

@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     void Awake()
     {
         physics = GetComponent<PlayerPhysics>();
+        App.instance.round.ResetRound();
+        App.instance.round.SetStartPos(transform.position.x);
     }
 
 
@@ -17,7 +19,7 @@ public class Player : MonoBehaviour
         if (other.tag == "Coin") {
             Coin coin = other.GetComponent<Coin>();
             if (coin != null) {
-                Debug.Log("Collected coin + $" + coin.money);
+                App.instance.AddCash(coin.money);
                 Destroy(coin.gameObject);
             }
         }

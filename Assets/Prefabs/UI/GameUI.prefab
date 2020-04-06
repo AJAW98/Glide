@@ -241,7 +241,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: $124,12
+  m_text: $0,00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 645df81f2f4c448499191ed06d07ac84, type: 2}
   m_sharedMaterial: {fileID: 1334184515622275989, guid: 645df81f2f4c448499191ed06d07ac84,
@@ -316,7 +316,7 @@ MonoBehaviour:
   m_margin: {x: -15.964179, y: -44.369587, z: 7.2327805, w: 44.803272}
   m_textInfo:
     textComponent: {fileID: 403651398}
-    characterCount: 7
+    characterCount: 5
     spriteCount: 0
     spaceCount: 0
     wordCount: 3
@@ -1182,7 +1182,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5356,12 meters
+  m_text: 0 meters
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 645df81f2f4c448499191ed06d07ac84, type: 2}
   m_sharedMaterial: {fileID: 1334184515622275989, guid: 645df81f2f4c448499191ed06d07ac84,
@@ -1257,10 +1257,10 @@ MonoBehaviour:
   m_margin: {x: -15.964179, y: -44.369587, z: 7.2327805, w: 44.803272}
   m_textInfo:
     textComponent: {fileID: 1742819234}
-    characterCount: 14
+    characterCount: 8
     spriteCount: 0
     spaceCount: 1
-    wordCount: 3
+    wordCount: 2
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -1335,7 +1335,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 04:56:125
+  m_text: 00:00:00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 645df81f2f4c448499191ed06d07ac84, type: 2}
   m_sharedMaterial: {fileID: 1334184515622275989, guid: 645df81f2f4c448499191ed06d07ac84,
@@ -1410,7 +1410,7 @@ MonoBehaviour:
   m_margin: {x: -15.964179, y: -44.369587, z: 7.2327805, w: 44.803272}
   m_textInfo:
     textComponent: {fileID: 1987470205}
-    characterCount: 9
+    characterCount: 8
     spriteCount: 0
     spaceCount: 0
     wordCount: 3
@@ -1781,6 +1781,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roundSummaryAnim: {fileID: 1344177445}
+  distanceText: {fileID: 1742819234}
+  timeText: {fileID: 1987470205}
+  cashText: {fileID: 403651398}
+  lerpTime: 1
+  textLerpInterval: 0.3
   parachuteTransform: {fileID: 80924692137458224}
   playerHeightTransform: {fileID: 7016986038663008044}
   altitudeTop: -500

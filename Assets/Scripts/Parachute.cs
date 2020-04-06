@@ -7,8 +7,7 @@ public class Parachute : MonoBehaviour
 
     [SerializeField] GameUI ui;
     [SerializeField] float parachuteFallSpeed;
-    [SerializeField] float parachuteOpenSpeed;
-    [SerializeField] AnimationCurve parachuteForceCurve;
+    [SerializeField] AnimationCurve parachuteYForceCurve, parachuteXForceCurve;
     float yVelocity, xVelocity;
     
     Transform parachuteOpenTarget;
@@ -27,6 +26,11 @@ public class Parachute : MonoBehaviour
         parachuteLandTarget = GameObject.FindGameObjectWithTag("ParachuteLandPoint").transform;
         mapBounds = GameObject.FindGameObjectWithTag("MapBounds").transform;
         rb = GetComponent<Rigidbody2D>();
+        
+
+        float skillMultiplier = App.instance.FindSkillByName("Parachute").currentLevel * App.instance.FindSkillByName("Parachute").skillIncreasePerLevel;
+        parachuteOpenTarget.position = new Vector2(parachuteOpenTarget.position.x, parachuteOpenTarget.position.y * (1 - skillMultiplier));
+
         ui.SetParachuteHeight(ConvertHeightToPercentage());
 
     }
@@ -56,13 +60,16 @@ public class Parachute : MonoBehaviour
         Debug.Log("Parachute open");
 
         Vector2 force = rb.velocity;
+
+        
         
         float height = parachuteOpenTarget.position.y - transform.position.y;
-        float perc = Mathf.InverseLerp(0, parachuteOpenTarget.position.y, height);
+        float percY = Mathf.InverseLerp(0, parachuteOpenTarget.position.y, height);
+        //float percX = 
 
-        force.y = Mathf.Lerp(parachuteOpenVel.y, -parachuteFallSpeed, parachuteForceCurve.Evaluate(perc));
-        force.x = Mathf.Lerp(parachuteOpenVel.x, 0, parachuteForceCurve.Evaluate(perc));
-        Debug.Log("Parachute force: " + force + " perc: " + perc);
+        force.y = Mathf.Lerp(parachuteOpenVel.y, -parachuteFallSpeed, parachuteYForceCurve.Evaluate(percY));
+        force.x = Mathf.Lerp(parachuteOpenVel.x, 0, parachuteXForceCurve.Evaluate(percY));
+        Debug.Log("Parachute force: " + force + " perc: " + percY);
         rb.velocity = force;
         
     }

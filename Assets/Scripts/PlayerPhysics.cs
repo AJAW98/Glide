@@ -95,20 +95,22 @@ public class PlayerPhysics : MonoBehaviour
 
         if (dive)
         {
-            dirVector = Vector2.SmoothDamp(dirVector, diveAngle, ref velRef, diveTime);
+            dirVector = Vector2.SmoothDamp(dirVector, diveAngle, ref velRef, diveTime * (1 - responsiveMultiplier));
         }
         else
         {
-            dirVector = Vector2.SmoothDamp(dirVector, glideAngle, ref velRef, liftTime);
+            dirVector = Vector2.SmoothDamp(dirVector, glideAngle, ref velRef, liftTime * (1 - responsiveMultiplier));
         }
 
         rb.velocity = (dirVector * velocity) * slowVector;
 
-        //Apply lift multiplier
-        
+        Debug.Log("Prev velo: " + rb.velocity);
 
-        Debug.Log("Prev velo: " + (dirVector * velocity) * slowVector);
-        Debug.Log("Vel: " + (dirVector * velocity) * slowVector * (1 + liftMultiplier));
+        //Apply lift multiplier
+        rb.velocity = new Vector2(rb.velocity.x * (1 + aerodynamicsMultipliers), rb.velocity.y * (1 - liftMultiplier));
+
+        
+        Debug.Log("Vel: " + rb.velocity);
 
         if (slowDisableTime < Time.time) {
             slowVector = Vector2.one;
@@ -148,8 +150,8 @@ public class PlayerPhysics : MonoBehaviour
 
     void GetSkillMultipliers() {
         liftMultiplier = app.FindSkillByName("Lift").currentLevel * app.FindSkillByName("Lift").skillIncreasePerLevel;
-        responsiveMultiplier = app.FindSkillByName("Reponsivness").currentLevel;
-        aerodynamicsMultipliers = app.FindSkillByName("Aerodynamics").currentLevel;
+        responsiveMultiplier = app.FindSkillByName("Reponsivness").currentLevel * app.FindSkillByName("Reponsivness").skillIncreasePerLevel;
+        aerodynamicsMultipliers = app.FindSkillByName("Aerodynamics").currentLevel * app.FindSkillByName("Aerodynamics").skillIncreasePerLevel;;
         Debug.Log(liftMultiplier + " | " + responsiveMultiplier + " | " + aerodynamicsMultipliers);
     }
 

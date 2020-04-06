@@ -14,6 +14,7 @@ public class App : MonoBehaviour
     [SerializeField] int currentDay = 1;
     [SerializeField] Skill[] skills;
 
+    public RoundTracker round;
 
     void Awake()
     {
@@ -21,12 +22,15 @@ public class App : MonoBehaviour
             instance = this;
         } else if (instance != this)
             Destroy(gameObject);
+
+        round = new RoundTracker();
     }  
        
     void Start()
     {
         SceneManager.LoadScene(1);
     }
+
 
     public float AddCash(float quantity) {
         cash += quantity;
