@@ -104,14 +104,11 @@ public class PlayerPhysics : MonoBehaviour
 
         rb.velocity = (dirVector * velocity) * slowVector;
 
-        Debug.Log("Prev velo: " + rb.velocity);
 
         //Apply lift multiplier
         rb.velocity = new Vector2(rb.velocity.x * (1 + aerodynamicsMultipliers), rb.velocity.y * (1 - liftMultiplier));
 
         
-        Debug.Log("Vel: " + rb.velocity);
-
         if (slowDisableTime < Time.time) {
             slowVector = Vector2.one;
             slowed = false;

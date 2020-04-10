@@ -194,7 +194,7 @@ MonoBehaviour:
     skillIncreasePerLevel: 0.1
   - name: Parachute
     category: 2
-    levels: 5
+    levels: 3
     currentLevel: 0
     costPerLevel: 50
     skillIncreasePerLevel: 0.2

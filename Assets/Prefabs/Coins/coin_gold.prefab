@@ -78,5 +78,11 @@ PrefabInstance:
       propertyPath: money
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 6949365773520062766, guid: 1662bd14628e8f945827ddbb2fac211c,
+        type: 3}
+      propertyPath: particlePrefab
+      value: 
+      objectReference: {fileID: 7141171493236408643, guid: c823a2bc3c5138a4b94a3782b2d9f62c,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1662bd14628e8f945827ddbb2fac211c, type: 3}

@@ -13,10 +13,11 @@ public class GameUI : MonoBehaviour
     bool distBool, timeBool, cashBool;
     float distanceLerp, timeLerp, cashLerp;
     [SerializeField] float lerpTime = 1f;
-    [SerializeField] float textLerpInterval = 0.3f;
 
 
     [Header("Altitude Meter")]
+    [SerializeField] TextMeshProUGUI altitudeText;
+    [SerializeField] float altitudeMultiplier = 1f; 
     [SerializeField] RectTransform parachuteTransform;
     [SerializeField] RectTransform playerHeightTransform;
     [SerializeField] float altitudeTop = -500f;
@@ -25,14 +26,20 @@ public class GameUI : MonoBehaviour
     [SerializeField] float parachuteBot = 34.9549f;
 
     App app;
+    Transform player;
 
     void Awake()
     {
         app = App.instance;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()
     {
+
+        float altitude = Mathf.Clamp(0f, (player.position.y * altitudeMultiplier), float.MaxValue);
+        altitudeText.text = altitude.ToString("#ft");
+
         if (distBool) {
 
             distanceLerp += Time.deltaTime / lerpTime;
@@ -86,6 +93,7 @@ public class GameUI : MonoBehaviour
     public void SetPlayerHeight(float perc) {
         float playerHeight = Mathf.Lerp(altitudeBot, altitudeTop, perc); 
         playerHeightTransform.anchoredPosition = new Vector2(playerHeightTransform.anchoredPosition.x, -playerHeight);
+        
     }
 
     public void SetParachuteHeight(float perc) {

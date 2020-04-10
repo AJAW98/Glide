@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
             Coin coin = other.GetComponent<Coin>();
             if (coin != null) {
                 App.instance.AddCash(coin.money);
+                Destroy(Instantiate(coin.particlePrefab, coin.transform.position, coin.transform.rotation), 2f);
                 Destroy(coin.gameObject);
             }
         }

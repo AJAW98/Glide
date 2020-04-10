@@ -1786,6 +1786,8 @@ MonoBehaviour:
   cashText: {fileID: 403651398}
   lerpTime: 1
   textLerpInterval: 0.3
+  altitudeText: {fileID: 6590215306583406557}
+  altitudeMultiplier: 100
   parachuteTransform: {fileID: 80924692137458224}
   playerHeightTransform: {fileID: 7016986038663008044}
   altitudeTop: -500
@@ -2028,7 +2030,7 @@ GameObject:
   - component: {fileID: 6053561784092798885}
   - component: {fileID: 6590215306583406557}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: AltitudeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2050,7 +2052,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 142.1, y: 0}
+  m_AnchoredPosition: {x: 142.1, y: 3.6}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6053561784092798885
@@ -2080,10 +2082,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2502 FT
+  m_text: 2502ft
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a203af56f72829d429bf2a1ff65001f6, type: 2}
-  m_sharedMaterial: {fileID: 4695859852292859752, guid: a203af56f72829d429bf2a1ff65001f6,
+  m_fontAsset: {fileID: 11400000, guid: 645df81f2f4c448499191ed06d07ac84, type: 2}
+  m_sharedMaterial: {fileID: 1334184515622275989, guid: 645df81f2f4c448499191ed06d07ac84,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2128,10 +2130,10 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_isTextTruncated: 0
@@ -2155,10 +2157,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: -2.2415593}
   m_textInfo:
     textComponent: {fileID: 6590215306583406557}
-    characterCount: 7
+    characterCount: 6
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 0
+    wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1

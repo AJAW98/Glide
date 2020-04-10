@@ -9,6 +9,7 @@ public class Coin : MonoBehaviour
     public float money;
 
     [SerializeField] float destroyOffset = 10f;
+    [SerializeField] public GameObject particlePrefab;
 
     void Awake()
     {

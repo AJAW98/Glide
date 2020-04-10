@@ -14,7 +14,7 @@ public class CameraClamp : MonoBehaviour
     {
         maxHeight = GameObject.FindGameObjectWithTag("MapBounds").transform;
         t = transform;
-        cameraSize = Camera.main.orthographicSize;
+        
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -22,6 +22,8 @@ public class CameraClamp : MonoBehaviour
     {
         if (maxHeight == null)
             return;
+
+        cameraSize = Camera.main.orthographicSize;
         float y = Mathf.Clamp(target.position.y, cameraSize, maxHeight.position.y - cameraSize);
         t.position = new Vector3(target.position.x, y, t.position.z);
         rb.position = t.position;
