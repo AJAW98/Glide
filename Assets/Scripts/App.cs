@@ -15,6 +15,7 @@ public class App : MonoBehaviour
     [SerializeField] Skill[] skills;
 
     public RoundTracker round;
+    float recordDistance = 25f;
 
     void Awake()
     {
@@ -74,5 +75,9 @@ public class App : MonoBehaviour
         }
 
         return null;
+    }
+
+    public float GetPersonalBest() {
+        return recordDistance;
     }
 }

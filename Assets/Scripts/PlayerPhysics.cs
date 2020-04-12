@@ -43,6 +43,7 @@ public class PlayerPhysics : MonoBehaviour
     Vector2 dirVector;
     Vector2 slowVector;
     Vector2 diveStartVector;
+    Vector2 windForce;
 
     [SerializeField] private bool dive;
 
@@ -102,12 +103,16 @@ public class PlayerPhysics : MonoBehaviour
             dirVector = Vector2.SmoothDamp(dirVector, glideAngle, ref velRef, liftTime * (1 - responsiveMultiplier));
         }
 
+        
+
         rb.velocity = (dirVector * velocity) * slowVector;
 
 
         //Apply lift multiplier
         rb.velocity = new Vector2(rb.velocity.x * (1 + aerodynamicsMultipliers), rb.velocity.y * (1 - liftMultiplier));
 
+        //Apply wind force
+        rb.velocity = rb.velocity + windForce;
         
         if (slowDisableTime < Time.time) {
             slowVector = Vector2.one;
@@ -116,6 +121,7 @@ public class PlayerPhysics : MonoBehaviour
 
         //Set sprite rotation
         rotator.SetRotation(dirVector);    
+       
 
 
         //Debug texts
@@ -145,11 +151,14 @@ public class PlayerPhysics : MonoBehaviour
         slowVector = new Vector2(1 - slowPower, 1f);
     }
 
+    public void AddWind(Vector2 force) {
+        windForce = force;
+    }
+
     void GetSkillMultipliers() {
         liftMultiplier = app.FindSkillByName("Lift").currentLevel * app.FindSkillByName("Lift").skillIncreasePerLevel;
         responsiveMultiplier = app.FindSkillByName("Reponsivness").currentLevel * app.FindSkillByName("Reponsivness").skillIncreasePerLevel;
         aerodynamicsMultipliers = app.FindSkillByName("Aerodynamics").currentLevel * app.FindSkillByName("Aerodynamics").skillIncreasePerLevel;;
-        Debug.Log(liftMultiplier + " | " + responsiveMultiplier + " | " + aerodynamicsMultipliers);
     }
 
 

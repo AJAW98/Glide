@@ -171,7 +171,7 @@ MonoBehaviour:
   - name: Aerodynamics
     category: 0
     levels: 10
-    currentLevel: 0
+    currentLevel: 9
     costPerLevel: 10
     skillIncreasePerLevel: 0.15
   - name: Radar

@@ -7,9 +7,11 @@ public class Parachute : MonoBehaviour
 
     [SerializeField] GameUI ui;
     [SerializeField] float parachuteFallSpeed;
+    [SerializeField] float parachuteXSlowTime;
     [SerializeField] AnimationCurve parachuteYForceCurve, parachuteXForceCurve;
-    float yVelocity, xVelocity;
-    
+    float xVelocity = 0f;
+    float xVelTimer;
+
     Transform parachuteOpenTarget;
     Transform parachuteLandTarget;
     Transform mapBounds;
@@ -61,15 +63,18 @@ public class Parachute : MonoBehaviour
 
         Vector2 force = rb.velocity;
 
+        if (xVelocity == 0)
+            xVelocity = force.x;
+
+        xVelTimer += Time.deltaTime / parachuteXSlowTime;
         
-        
+
         float height = parachuteOpenTarget.position.y - transform.position.y;
         float percY = Mathf.InverseLerp(0, parachuteOpenTarget.position.y, height);
-        //float percX = 
 
         force.y = Mathf.Lerp(parachuteOpenVel.y, -parachuteFallSpeed, parachuteYForceCurve.Evaluate(percY));
-        force.x = Mathf.Lerp(parachuteOpenVel.x, 0, parachuteXForceCurve.Evaluate(percY));
-        Debug.Log("Parachute force: " + force + " perc: " + percY);
+        force.x = Mathf.Lerp(xVelocity, 0, xVelTimer);
+        Debug.Log("Parachute x timer: " + xVelTimer);
         rb.velocity = force;
         
     }

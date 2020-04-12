@@ -10,7 +10,7 @@ public class FlockController : MonoBehaviour
     Rigidbody2D rb;
     Transform player;
 
-    float destroyOffset = 8f;
+    float destroyOffset = 20f;
 
     void Start()
     {
