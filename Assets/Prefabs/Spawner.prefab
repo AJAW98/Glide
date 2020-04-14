@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8032076376503277417}
   - component: {fileID: 6737904691038535879}
   - component: {fileID: 250567900}
+  - component: {fileID: 8510089101684631079}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -79,3 +80,22 @@ MonoBehaviour:
   - {fileID: 8740562848578516523, guid: db78b361f856ac641a417f5e3d2004d3, type: 3}
   xDistFromPlayer: 15
   minHeight: 4
+--- !u!114 &8510089101684631079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4413482178908150507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c7301e3eaf330545b1224865b7a32c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 1
+  frequency: 5
+  prefab: {fileID: 5954595754804270474, guid: 5ae49845ea84d28498698cedbc92fdf4, type: 3}
+  xDistFromPlayer: 15
+  minHeight: 3
+  windDirectionMin: 0
+  windDirectionMax: 90

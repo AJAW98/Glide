@@ -11,7 +11,7 @@ public class Bird : MonoBehaviour
 
     public void Hit() {
         foreach (ParticleSystem effect in effects) {
-            Instantiate(effect, transform.position, Quaternion.identity);
+            Destroy(Instantiate(effect, transform.position, Quaternion.identity), 2f);
             
         }
 

@@ -92,8 +92,6 @@ public class PlayerPhysics : MonoBehaviour
         if (parachute.IsOpen())
             return;
 
-        
-
         if (dive)
         {
             dirVector = Vector2.SmoothDamp(dirVector, diveAngle, ref velRef, diveTime * (1 - responsiveMultiplier));
@@ -102,6 +100,8 @@ public class PlayerPhysics : MonoBehaviour
         {
             dirVector = Vector2.SmoothDamp(dirVector, glideAngle, ref velRef, liftTime * (1 - responsiveMultiplier));
         }
+        
+
 
         
 
@@ -120,7 +120,8 @@ public class PlayerPhysics : MonoBehaviour
         }
 
         //Set sprite rotation
-        rotator.SetRotation(dirVector);    
+        rotator.SetRotation(rb.velocity);
+            
        
 
 
@@ -151,8 +152,12 @@ public class PlayerPhysics : MonoBehaviour
         slowVector = new Vector2(1 - slowPower, 1f);
     }
 
-    public void AddWind(Vector2 force) {
+    public void SetWind(Vector2 force) {
         windForce = force;
+    }
+
+    public Vector2 GetWind() {
+        return windForce;
     }
 
     void GetSkillMultipliers() {
